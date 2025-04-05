@@ -1,0 +1,21 @@
+{
+  "name": "voting-site",
+  "version": "1.0.0",
+  "description": "voting site for ubg",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0",
+    "minecraft-server-util": "^5.4.4"
+  }
+}

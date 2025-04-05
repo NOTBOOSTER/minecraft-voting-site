@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vote for our Server - Page <%= voteNumber %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff3333;
+            --secondary: #990000;
+            --dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark);
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255, 51, 51, 0.2) 2%, transparent 0%),
+                radial-gradient(circle at 75px 75px, rgba(255, 51, 51, 0.15) 2%, transparent 0%);
+            background-size: 100px 100px;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            margin: 0;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .ad-container {
+            margin: 2rem auto;
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--dark);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .countdown {
+            font-size: 4rem;
+            color: var(--primary);
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <h1>Vote for our Server</h1>
+        <p>Vote on this site to receive amazing rewards!</p>
+        <form id="voteForm" method="POST" action="/vote/<%= voteNumber %>">
+            <div class="form-group">
+                <label for="username">Minecraft Username:</label>
+                <input type="text" id="username" name="username" required 
+                       pattern="^[a-zA-Z0-9_]{3,16}$" 
+                       title="3-16 characters, alphanumeric and underscore only">
+            </div>
+            <button type="submit">Submit Vote</button>
+        </form>
+    </div>
+
+    <div id="voteModal" class="modal">
+        <div class="modal-content">
+            <h2>Processing Vote</h2>
+            <div class="countdown">10</div>
+            <p>Please wait while we process your vote...</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#voteForm').on('submit', function(e) {
+                e.preventDefault();
+                let countdown = 10;
+                $('#voteModal').fadeIn();
+                
+                const timer = setInterval(function() {
+                    countdown--;
+                    $('.countdown').text(countdown);
+                    
+                    if (countdown <= 0) {
+                        clearInterval(timer);
+                        $('#voteModal').fadeOut();
+                        document.getElementById('voteForm').submit();
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
