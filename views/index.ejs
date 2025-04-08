@@ -7,36 +7,83 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Minecraft&display=swap" rel="stylesheet">
     <style>
-        .minecraft-btn {
-            background: #999 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMQAAAAPCAAAAACe4j/AAAAEuElEQVRIx1WWS5Ibuw5EtddrdRRJJE4iSKrb4c2/AUuy30iK+jEBHCTwAICHx1n9yHn9eLp5+Hook4dq6zR/TVLT/EnT+LldxzPd+hX56X5+J1Zz8/x4yn+yP/20z+yh8t18l+kx99tfGQn+ytT1c/zq+6mtfkzrO6Gz0kzV1r6+skXzuX+2O7X1Z33yuaYedXut72d+nOnnj9XedmiG3YZ1junXVzyn+18zrWLJX+8//1hp/nzvz+7W/c6P82tt71I/TjnnX7//jF7z4+1hrqnzb4jM6T5Z4/xYvU0xu6n84+dz9pw+w7Rt9ulrzLlbnz7H9tsf7X5Wv7Xm7kvVN/Ry9It0ozkK60vtc/WTP/r3Z/Z8VuVz9WhZVHs5p3u11dd6LrGZ8QgfyXN+zNUd7qvvrpm2yt1Krc25J8stR8eYf5P3/x7f//tWBe+nRmmxbFZ2JvXz9sh/fc3y4+dl7r5P9ZmXDGXfdYr545HvdP9r/fr9R9dq536yesyf9+kxb9Zv//K4T2/nP8+p8/xY69Y9Z79Hruk1bbZ//POf69TPc6mr36yZ59w0f0nrbN7f1n6c/bL8zz/b47716K9lLPs5Yyzn/OA/feVn+vGsVuorKa+p3c6PHzL7p/qz6iunx+qu5LJF31LjOeZn+Nv8PqNpfVhz+qV+n626X7P6Yn6qj2r2O9nz2c/7HO/ph/sUgVj9Jtp7rf1Ofu5XdeR+tdV/znYlwP569mu/yjyWL+/z+mV+ld/t91l2q97kvdV3rrBqnx/kz1HdN/dYHXutZ1rnkX+3NO3HvD5t5p869eFr5rs/53P+lTStd9XQ7vY+gz/b+zPbT/mUnW/HbF5n8+d+PcJZCfD+Iqz+Xt/ms73fz7z2Y36k7/59tr/79zk+U2f7min3p44SJ+tnaXAP9apxfpAPvYs437XeALnf7Xmf5Oc0+f5P+UTebaftG4D+x+r2t/kxb+Y1reP3c37wfibQYxvzuZrt/pl+zZfpPQ3pW+r7m3q2Xr/Pn+d9m79+n/E+23MYqpW6p/oyfzBP9VV+Jr00r/Pv/fu8uffilL4Pv+Q/7TkbVPv6f/xAPbf3h0S38zb3mX+2t93X+gjz2xtnz/PbO+/nYkv+XO/BXXxV/d0DGQZ/ke1p/tF+PcJsh8CPvxPb5vsxjfl3+cp+zZ/5mX/v9+kx/2z1fKv6t/dRteC7H+27P+Mz/zkvz82t2r4/n+lf9XP+pd7sdx7n/fu8/me/2vt8ar7b+xw/6+v8+/x5z9/t73f+7Nd6PdO7PN+q9p6+zedz9Dx/1OunfD/792v0mcbss96Pz/TWvM/93P9ePz7T3z0W63WuR/j9Yx0/u8/7fOr/YYrn/lr7u/j3eX/nfrefPhvZPOU3/6ir7+d1XZ8kG/+U6ve0av8Zn4w5+4y+3+u7XePnZ/rZv0v4n4/6/V4fIb6rE+H7f5n7pU7pc8xqS3l/h981kL4+40xrn+nv/PP8/Sz7ff/6jVsW1x7mt/TpCy/r8/9NZUvn/Pz9eZ3yf4hk7DqDA9m5AAAAAElFTkSuQmCC);
-            border: 2px solid #000;
-            color: white;
-            text-shadow: 2px 2px #000;
-            font-family: 'Minecraft', sans-serif;
-            padding: 8px 16px;
-            transition: all 0.2s;
+        :root {
+            --primary: #ff3333;
+            --secondary: #990000;
+            --dark: #1a1a1a;
         }
-        .minecraft-btn:hover {
-            background-color: #AAA;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark);
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255, 51, 51, 0.2) 2%, transparent 0%),
+                radial-gradient(circle at 75px 75px, rgba(255, 51, 51, 0.15) 2%, transparent 0%);
+            background-size: 100px 100px;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            margin: 0;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: var(--secondary);
             transform: translateY(-2px);
         }
-        .minecraft-bg {
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADAAgMAAAAJwxpxAAAACVBMVEUAAAAzMzMzMzPOPd5rAAAAA3RSTlMAIiKZdlT6AAAA70lEQVR4Xu1ZQQ6EIAycI/AWH8ET8FaeQF+A8P8/WDdh2UBZ2L0YEzPRgmVgGIvEcf6JUkpRSimllP7QFjPvESJEiBAhQoQIPYZWpgCAA8D9GIHcGBF6JA90IBYhK/MQvZaXAmBXDLykR+g9PcQAZEK4iL0IeUsPMQA5YW/TMzzS0z08Qt7Twz1EHumZDgB3MALp6RkeIe/p4R4iD/UAD5Qe9xC5oEcohF6hEHrtg+8zdAhz6dvz8vqitj5NdX3m63oR1fWqqO/nWd9vRd3vXd0fprq/3HV//uv+ttL9caf7883IpwGllFJKKaWUxvkBC5Q6IhXx8V0AAAAASUVORK5CYII=);
+        .sites{
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
         }
+        
     </style>
 </head>
-<body class="minecraft-bg min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-2xl">
+<body>
+    <div>
+        <div class="main-content">
             <h1 class="text-4xl font-bold text-center text-white mb-8">Vote for Our Server</h1>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <% for(let i = 1; i <= 4; i++) { %>
-                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:transform hover:scale-105 transition duration-200">
+                <div class="sites p-6 rounded-lg shadow-lg hover:transform hover:scale-105 transition duration-200">
                     <h2 class="text-2xl font-bold text-white mb-4">Voting Site #<%= i %></h2>
                     <p class="text-gray-300 mb-4">Vote on this site to receive amazing rewards!</p>
-                    <a href="/vote/<%= i %>" class="minecraft-btn inline-block w-full text-center">
-                        Vote Now
+                    <a href="/vote/<%= i %>">
+                        <button>
+                            Vote Now
+                        </button>
                     </a>
                 </div>
                 <% } %>
