@@ -130,7 +130,7 @@ app.post('/vote/:number', async (req, res) => {
     const ip = getClientIP(req);
 
     // Validate username
-    if (!username || username.length > 16 || !/^[a-zA-Z0-9_]{3,16}$/.test(username)) {
+    if (!username || username.length > 16 || !/^[a-zA-Z0-9_.]{3,16}$/.test(username)) {
         return res.render('error', {
             message: 'Invalid username format. Username must be 3-16 characters long and contain only letters, numbers, and underscores.',
             voteNumber
@@ -185,9 +185,9 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.WEBSITE_PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port http://localhost:${PORT}`);
+    console.log(`Server running on port http://${process.env.WEBSITE_URL}:${PORT}`);
     
     // Create data directory if it doesn't exist
     const dataDir = path.join(__dirname, 'data');
