@@ -3,158 +3,30 @@
 <head>
     <title>Vote for our Server - Page <%= voteNumber %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <style>
-        :root {
-            --primary: #ff3333;
-            --secondary: #990000;
-            --dark: #1a1a1a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--dark);
-            background-image: 
-                radial-gradient(circle at 25px 25px, rgba(255, 51, 51, 0.2) 2%, transparent 0%),
-                radial-gradient(circle at 75px 75px, rgba(255, 51, 51, 0.15) 2%, transparent 0%);
-            background-size: 100px 100px;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            margin: 0;
-        }
-
-        .main-content {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--primary);
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        button {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        .ad-container {
-            margin: 2rem auto;
-            width: 100%;
-            max-width: 320px;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--dark);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 2px solid var(--primary);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .countdown {
-            font-size: 4rem;
-            color: var(--primary);
-            margin: 1rem 0;
-            font-weight: bold;
-        }
-    </style>
 </head>
-<body>
-    <div class="main-content">
-        <h1>Vote for our Server</h1>
-        <p>Vote on this site to receive amazing rewards!</p>
-        <form id="voteForm" method="POST" action="/vote/<%= voteNumber %>">
-            <div class="form-group">
-                <label for="username">Minecraft Username:</label>
-                <input type="text" id="username" name="username" required 
-                       pattern="^[a-zA-Z0-9_.]{3,16}$" 
-                       title="3-16 characters, alphanumeric and underscore only">
+<body class="bg-gray-900 min-h-screen flex justify-center items-center py-8 px-4">
+    <div id="votearea"class="bg-gray-700 bg-opacity-90 rounded-lg shadow-lg border-2 border-red-500 w-full max-w-md p-12 text-center">
+        <h1 class="text-3xl font-bold text-red-500 mb-6">Vote for our Server <%= name %></h1>
+        <p class="text-gray-300 mb-4">Vote on this site to receive amazing rewards!</p>
+        <form id="voteForm" method="POST" action="/vote/<%= voteNumber %>" class="mb-4">
+            <div class="mb-4 text-left">
+                <label for="username" class="block text-red-500 text-sm font-bold mb-2">Minecraft Username:</label>
+                <input type="text" id="username" name="username" required
+                       pattern="^[a-zA-Z0-9_.]{3,16}$"
+                       title="3-16 characters, alphanumeric and underscore only"
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100 border-red-500">
             </div>
-            <button type="submit">Submit Vote</button>
+            <button type="submit" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline uppercase transition-transform transform hover:translate-y-[-2px]">Submit Vote</button>
         </form>
     </div>
 
-    <div id="voteModal" class="modal">
-        <div class="modal-content">
-            <h2>Processing Vote</h2>
-            <div class="countdown">10</div>
-            <p>Please wait while we process your vote...</p>
-        </div>
+    <div id="voteModal" class="hidden fixed bg-gray-800 bg-opacity-70 flex justify-center items-center">
+        <div class="modal-content bg-gray-800 rounded-lg shadow-lg border-2 border-red-500 p-8 text-center">
+            <h1 class="text-red-500 text-3xl font-bold mb-4">Vote in Progress</h1>
+            <p class="text-gray-300 mb-4">Please wait while we process your vote...</p>
+            <div class="countdown text-red-500 text-2xl font-bold">10</div>
     </div>
 
     <script>
@@ -163,6 +35,9 @@
                 e.preventDefault();
                 let countdown = 10;
                 $('#voteModal').fadeIn();
+                $('#voteModal').removeClass('hidden');
+                $('#votearea').addClass('hidden');
+
                 
                 const timer = setInterval(function() {
                     countdown--;

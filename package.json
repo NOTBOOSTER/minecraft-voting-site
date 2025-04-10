@@ -17,5 +17,8 @@
     "fs": "^0.0.1-security",
     "js-yaml": "^4.1.0",
     "minecraft-server-util": "^5.4.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.3"
   }
 }
