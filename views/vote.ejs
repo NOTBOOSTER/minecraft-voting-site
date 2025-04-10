@@ -6,7 +6,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body class="bg-gray-900 min-h-screen flex justify-center items-center py-8 px-4">
+<body class="bg-gray-900 min-h-screen flex justify-center items-center py-8 px-4 flex-col">
     <div id="votearea"class="bg-gray-700 bg-opacity-90 rounded-lg shadow-lg border-2 border-red-500 w-full max-w-md p-12 text-center">
         <h1 class="text-3xl font-bold text-red-500 mb-6">Vote for our Server <%= name %></h1>
         <p class="text-gray-300 mb-4">Vote on this site to receive amazing rewards!</p>
@@ -20,7 +20,9 @@
             </div>
             <button type="submit" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline uppercase transition-transform transform hover:translate-y-[-2px]">Submit Vote</button>
         </form>
+        
     </div>
+    <%- include('_copyright') %>
 
     <div id="voteModal" class="hidden fixed bg-gray-800 bg-opacity-70 flex justify-center items-center">
         <div class="modal-content bg-gray-800 rounded-lg shadow-lg border-2 border-red-500 p-8 text-center">
@@ -53,4 +55,5 @@
         });
     </script>
 </body>
+    
 </html>
