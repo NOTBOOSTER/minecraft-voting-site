@@ -1,0 +1,32 @@
+<div>
+    <h1 class="text-3xl font-bold text-white mb-6 text-center py-4">Leaderboard</h1>
+    <div id="lbitems">
+        <div>loading..</div>
+    </div>
+</div>
+ <script>
+    const lbitems = document.getElementById('lbitems');
+    async function loadlbdata() {
+        const response = await fetch('/leaderboard'
+            , {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        const data = await response.json();
+        lbitems.innerHTML = '';
+
+        data.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'bg-gray-800 p-2 rounded-lg mb-4 shadow-lg flex justify-between items-center';
+            div.innerHTML = `
+                <h2 class="text-xl font-bold text-white">${index + 1} | ${item.username}</h2><span class="text-gray-300">Votes: ${item.totalvotes}</span>
+            `;
+            lbitems.appendChild(div);
+        });
+    }
+    loadlbdata();
+    
+ </script>

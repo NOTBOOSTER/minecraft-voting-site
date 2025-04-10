@@ -213,6 +213,28 @@ app.post("/vote/:number", async (req, res) => {
   }
 });
 
+// getting top 10 users lb by their votes
+app.post("/leaderboard", (req, res) => {
+    const leaderboardData = loadleaderboardData();
+    const sortedLeaderboard = Object.entries(leaderboardData)
+        .sort(([, a], [, b]) => b.totalvotes - a.totalvotes)
+        .slice(0, 10)
+        .map(([username, data]) => ({
+        username,
+        totalvotes: data.totalvotes,
+        }));
+    
+    res.send(sortedLeaderboard);
+    });
+
+app.get("*", (req, res) => {
+  res.status(404).render("error", {
+    message: "Page not found",
+    voteNumber: null,
+  });
+});
+
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
