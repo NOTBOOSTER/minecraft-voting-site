@@ -12,6 +12,8 @@ const ip = process.env.IP;
 const port = parseInt(process.env.PORT);
 const token = process.env.VOTIFIER_TOKEN;
 const name = process.env.NAME;
+const adistraurl = process.env.ADISTRA_URL || "";
+const adistraredirect = process.env.ADISTRA_REDIRECT || "";
 
 // Middleware
 app.set("view engine", "ejs");
@@ -134,7 +136,7 @@ const sendVoteToServer = async (username, voteNumber) => {
 // Routes
 // Home page
 app.get("/", (req, res) => {
-  res.render("index", { name });
+  res.render("index", { name, adistraredirect, adistraurl });
 });
 
 // Vote page
@@ -143,7 +145,7 @@ app.get("/vote/:number", (req, res) => {
   if (!["1", "2", "3", "4"].includes(voteNumber)) {
     return res.redirect("/");
   }
-  res.render("vote", { voteNumber, name });
+  res.render("vote", { voteNumber, name, adistraredirect, adistraurl });
 });
 
 // Handle vote submission
@@ -215,17 +217,17 @@ app.post("/vote/:number", async (req, res) => {
 
 // getting top 10 users lb by their votes
 app.post("/leaderboard", (req, res) => {
-    const leaderboardData = loadleaderboardData();
-    const sortedLeaderboard = Object.entries(leaderboardData)
-        .sort(([, a], [, b]) => b.totalvotes - a.totalvotes)
-        .slice(0, 10)
-        .map(([username, data]) => ({
-        username,
-        totalvotes: data.totalvotes,
-        }));
-    
-    res.send(sortedLeaderboard);
-    });
+  const leaderboardData = loadleaderboardData();
+  const sortedLeaderboard = Object.entries(leaderboardData)
+    .sort(([, a], [, b]) => b.totalvotes - a.totalvotes)
+    .slice(0, 10)
+    .map(([username, data]) => ({
+      username,
+      totalvotes: data.totalvotes,
+    }));
+
+  res.send(sortedLeaderboard);
+});
 
 app.get("*", (req, res) => {
   res.status(404).render("error", {
@@ -233,7 +235,6 @@ app.get("*", (req, res) => {
     voteNumber: null,
   });
 });
-
 
 // Error handler
 app.use((err, req, res, next) => {

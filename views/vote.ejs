@@ -11,6 +11,8 @@
         <h1 class="text-3xl font-bold text-red-500 mb-6">Vote for our Server <%= name %></h1>
         <p class="text-gray-300 mb-4">Vote on this site to receive amazing rewards!</p>
         <form id="voteForm" method="POST" action="/vote/<%= voteNumber %>" class="mb-4">
+            <%- adistraurl %>
+            <%- adistraredirect %>
             <div class="mb-4 text-left">
                 <label for="username" class="block text-red-500 text-sm font-bold mb-2">Minecraft Username:</label>
                 <input type="text" id="username" name="username" required
